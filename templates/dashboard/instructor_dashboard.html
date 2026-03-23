@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Instructor Dashboard</h2>
+
+<div class="card p-3">
+
+<p>Welcome {{request.user.username}}</p>
+
+<p>You are logged in as Instructor</p>
+
+<a href="/accounts/logout/" class="btn btn-danger">
+Logout
+</a>
+
+</div>
+
+<a href="/create-course/" class="btn btn-success mb-3">
+Create Course
+</a>
+
+<table class="table table-striped">
+
+<thead>
+
+<tr>
+<th>Course</th>
+<th>Students</th>
+<th>Actions</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for course in courses %}
+
+<tr>
+
+<td>{{ course.title }}</td>
+
+<td>{{ course.enrollment_set.count }}</td>
+
+<td>
+
+<a href="/courses/{{course.id}}" class="btn btn-sm btn-primary">
+View
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+{% endblock %}
